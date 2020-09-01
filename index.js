@@ -49,7 +49,7 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
         this.$inner = $('<div/>', {
             class: "h5p-inner"
         });
-        this.$endQ = $('<button/>', { 'class': "endQuiz", 'text': "submit Quiz " });
+        // this.$endQ = $('<button/>', { 'class': "endQuiz", 'text': "submit Quiz " });
 
         //score create
         this.score = 0;
@@ -248,12 +248,44 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
             var problemIndex = i + 1;
 
             // add meta data of the question
+            /*
             $("<h2/>", { "class": "problemTitle", "text": "Question " + problemIndex + ": " + problem_title }).appendTo(parsonsjs.$question);
             $("<p/>", { "class": "problemDescription", "text": problem_description }).appendTo(parsonsjs.$question);
             $("<p/>", { "class": "codeLanguage", "id": "language-" + i, "text": problem.code.code_language }).appendTo(parsonsjs.$question);
             $("#language-" + i).prepend($("<i class= 'fas fa-globe-asia'> language:  </i> "));
             $("<div/>", { "class": "sortable-code", "id": "sortableTrash" }).appendTo(parsonsjs.$question);
             $("<div/>", { "class": "sortable-code", "id": "sortable" }).appendTo(parsonsjs.$question);
+            */
+
+            var template = 
+            '<h2 class="problemTitle"><%= title %></h2>'+
+            '<p class="problemDescription"><%= problemDescription %></p>'+
+            '<p class="codeLanguage" id="language-<%= index %>">'+
+            '    <i class="fas fa-globe-asia"> language: </i>'+
+            '    <%= codeLanguage %> '+
+            '</p>'+
+            '<div class="sortable-code" id="sortableTrash"> </div>'+
+            '<div class="sortable-code" id="sortable"> </div>'+
+            '<div style="clear:both;"></div>'+
+            ''+
+            '<div class="actions">'+
+            '    <a class="h5p-joubelui-button newInstance" href="#" id="newInstanceLink-<%= index %>"><%= button1Title %></a>'+
+            '    <a class="h5p-joubelui-button feedback" href="#" id="feedbackLink-<%= index %>"><%= button2Title %></a>'+
+            '    <a class="h5p-joubelui-button submit endQuiz" href="#" id="submitLink-<%= index %>"><%= buttonSubmit %></a>'+
+            '</div>';
+
+            var ejs_template = new EJS({ text: template });
+            let html = ejs_template.render({
+                title: "Question " + problemIndex + ": " + problem_title,
+                problemDescription: problem_description,
+                index: problemIndex,
+                codeLanguage: problem.code.code_language,
+                button1Title: "New instance",
+                button2Title: "Get feedback",
+                buttonSubmit: "Submit",
+            });
+            console.log(html);
+            $(html).appendTo(parsonsjs.$question);
 
 
             // 
@@ -368,9 +400,6 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
 
             // newInstance and feedback buttons
             $("<div/>", { "style": "clear:both;" }).appendTo(parsonsjs.$question);
-            parsonsjs.$question.append($("<p/>", { 'id': "buttons" }));
-            $("<a/>", { "class": "instance", "href": "#", "id": "newInstanceLink-" + i, "text": "New instance" }).appendTo(parsonsjs.$question.find("#buttons"));
-            $("<a/>", { "class": "feedback", "href": "#", "id": "feedbackLink-" + i, "text": "Get feedback" }).appendTo(parsonsjs.$question.find("#buttons"));
             $("<div/>", { "css": "clear:both;" }).appendTo(parsonsjs.$question);
             $('<div/>', { "id": "unittest-" + i }).appendTo(parsonsjs.$question);
         }
@@ -394,7 +423,7 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
             if (fb.success) { alert("Good, you solved this question!"); }
         });
         //submit button to submit the quiz form
-        self.$endQ.appendTo(self.$inner);
+        // self.$endQ.appendTo(self.$inner);
         $(".endQuiz").click(function() {
             finishTotal = new Date() - startTotal;
             /**attach result page */
