@@ -245,17 +245,9 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
             // create a new parson question
             var problem_title = problem.problem_title;
             var problem_description = problem.problem_description;
-            var problemIndex = i + 1;
+            var problemIndex = i;
 
             // add meta data of the question
-            /*
-            $("<h2/>", { "class": "problemTitle", "text": "Question " + problemIndex + ": " + problem_title }).appendTo(parsonsjs.$question);
-            $("<p/>", { "class": "problemDescription", "text": problem_description }).appendTo(parsonsjs.$question);
-            $("<p/>", { "class": "codeLanguage", "id": "language-" + i, "text": problem.code.code_language }).appendTo(parsonsjs.$question);
-            $("#language-" + i).prepend($("<i class= 'fas fa-globe-asia'> language:  </i> "));
-            $("<div/>", { "class": "sortable-code", "id": "sortableTrash" }).appendTo(parsonsjs.$question);
-            $("<div/>", { "class": "sortable-code", "id": "sortable" }).appendTo(parsonsjs.$question);
-            */
 
             var template = 
             '<h2 class="problemTitle"><%= title %></h2>'+
@@ -269,9 +261,11 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
             '<div style="clear:both;"></div>'+
             ''+
             '<div class="actions">'+
-            '    <a class="h5p-joubelui-button newInstance" href="#" id="newInstanceLink-<%= index %>"><%= button1Title %></a>'+
-            '    <a class="h5p-joubelui-button feedback" href="#" id="feedbackLink-<%= index %>"><%= button2Title %></a>'+
-            '    <a class="h5p-joubelui-button submit endQuiz" href="#" id="submitLink-<%= index %>"><%= buttonSubmit %></a>'+
+            '    <button type="button" role="button" class="h5p-joubelui-button newInstance" id="newInstanceLink-<%= index %>"><%= button1Title %></button>'+
+            '    <button type="button" role="button" class="h5p-joubelui-button feedback" id="feedbackLink-<%= index %>"><%= button2Title %></button>'+
+            '</div>' +
+            '<div class="actions" style="margin-top: 70px;">'+
+            '    <button type="button" role="button" class="h5p-joubelui-button submit endQuiz" id="submitLink-<%= index %>"><%= buttonSubmit %></buttona>'+
             '</div>';
 
             var ejs_template = new EJS({ text: template });
@@ -403,7 +397,7 @@ H5P.ParsonsQuiz = (function($, ParsonsJS) {
             $("<div/>", { "css": "clear:both;" }).appendTo(parsonsjs.$question);
             $('<div/>', { "id": "unittest-" + i }).appendTo(parsonsjs.$question);
         }
-        $(".instance").on('click', function(event) {
+        $(".newInstance").on('click', function(event) {
             var currentId = $(this).attr('id');
             var currentIndex = currentId.substr(currentId.length - 1);
             event.preventDefault();
