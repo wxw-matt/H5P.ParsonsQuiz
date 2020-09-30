@@ -1,4 +1,5 @@
-[{
+[
+    {
         "label": "Assignment Description",
         "importance": "high",
         "name": "assignmentDescription",
@@ -12,16 +13,19 @@
         "label": "List of parsons puzzle problems",
         "importance": "high",
         "type": "list",
-        "widgets": [{
-            "name": "VerticalTabs",
-            "label": "Default"
-        }],
+        "widgets": [
+            {
+                "name": "VerticalTabs",
+                "label": "Default"
+            }
+        ],
         "min": 1,
         "entity": "problem",
         "field": {
             "name": "problem",
             "type": "group",
-            "fields": [{
+            "fields": [
+                {
                     "label": "Problem Title",
                     "name": "problem_title",
                     "type": "text",
@@ -37,11 +41,13 @@
                     "label": "Problem Content",
                     "name": "code",
                     "type": "group",
-                    "fields": [{
+                    "fields": [
+                        {
                             "label": "Language",
                             "name": "code_language",
                             "type": "select",
-                            "options": [{
+                            "options": [
+                                {
                                     "value": "Java",
                                     "label": "Java"
                                 },
@@ -67,7 +73,6 @@
                                 "color": true,
                                 "background": true
                             }
-
                         },
                         {
                             "label": "Max_wrong_line",
@@ -99,12 +104,14 @@
                     "type": "group",
                     "description": "Please add 2 test cases",
                     "importance": "high",
-                    "fields": [{
+                    "fields": [
+                        {
                             "name": "testcase1",
                             "type": "group",
                             "label": "Test Case 1",
                             "importance": "high",
-                            "fields": [{
+                            "fields": [
+                                {
                                     "label": "Code Initiation",
                                     "name": "initcode",
                                     "type": "text",
@@ -123,14 +130,14 @@
                                     "widget": "textarea"
                                 }
                             ]
-
                         },
                         {
                             "name": "testcase2",
                             "type": "group",
                             "label": "Test Case 2",
                             "importance": "high",
-                            "fields": [{
+                            "fields": [
+                                {
                                     "label": "Code Initiation",
                                     "name": "initcode",
                                     "type": "text",
@@ -148,10 +155,8 @@
                                     "type": "text",
                                     "widget": "textarea",
                                     "description": "do not include any space in this text"
-
                                 }
                             ]
-
                         }
                     ]
                 }
@@ -181,7 +186,8 @@
         "label": "Interface texts in quiz",
         "importance": "low",
         "common": true,
-        "fields": [{
+        "fields": [
+            {
                 "name": "prevButton",
                 "type": "text",
                 "label": "Back button",
@@ -266,7 +272,8 @@
         "type": "group",
         "label": "Quiz finished",
         "importance": "medium",
-        "fields": [{
+        "fields": [
+            {
                 "name": "showResultPage",
                 "type": "boolean",
                 "label": "Display results",
@@ -313,7 +320,8 @@
                 "label": "Old Feedback",
                 "importance": "low",
                 "deprecated": true,
-                "fields": [{
+                "fields": [
+                    {
                         "name": "successGreeting",
                         "type": "text",
                         "label": "Quiz passed greeting",
@@ -385,7 +393,6 @@
                 "default": "Show solution",
                 "description": "Text for the solution button."
             }
-
         ]
     },
     {
